@@ -1,7 +1,9 @@
 ﻿{
   "dependencies": {
     "Dropbox.Api": "4.2.4",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
+    "FontAwesome.UWP": "4.7.0.9",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+    "WinRTXamlToolkit.UWP": "2.3.0"
   },
   "frameworks": {
     "uap10.0": {}

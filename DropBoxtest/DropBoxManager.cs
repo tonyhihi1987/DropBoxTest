@@ -1,20 +1,18 @@
 ﻿using Dropbox.Api;
-using DropBoxtest.Model;
+using Dropbox.Api.Files;
+using DropBoxTest.Model;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.Security.Authentication.Web;
 
-namespace DropBoxtest
+namespace DropBoxTest
 {
     internal class DropBoxManager
     {
-        private static DropboxClient _dbx;
-        private static string _token;
+        private  DropboxClient _dbx;
+        private  string _token;
 
-        public static  async Task Connect()
+        public   async Task Connect()
         {
             var authUri = DropboxOAuth2Helper.GetAuthorizeUri(
                 OAuthResponseType.Token,
@@ -30,7 +28,7 @@ namespace DropBoxtest
             _dbx = new DropboxClient(_token);
         }
 
-        private static  void ProcessResult(WebAuthenticationResult result)
+        private   void ProcessResult(WebAuthenticationResult result)
         {
             switch (result.ResponseStatus)
             {
@@ -50,21 +48,36 @@ namespace DropBoxtest
         }
 
 
-        public static async Task<List<DropBoxFile>> ListFiles()
-        {
-            List<DropBoxFile> DropBoxFiles = new List<DropBoxFile>();
-
+        public  async Task<DropBoxFileViewModel> BuildTreeView()
+        {            
             var list = await _dbx.Files.ListFolderAsync(string.Empty);
-           
-            foreach (var folder in list.Entries.Where(i => i.IsFolder))
-            {
-                list = await _dbx.Files.ListFolderAsync(new Dropbox.Api.Files.ListFolderArg(folder.PathLower));
-            }
 
-
-            return DropBoxFiles;
+            return  await GetDropBoxFiles(new DropBoxFileViewModel(),list);
         }
 
+        private  async Task<DropBoxFileViewModel> GetDropBoxFiles(DropBoxFileViewModel rootFile,ListFolderResult childrens)
+        {
+            foreach (var dropBoxItem in childrens.Entries)
+            {
+                var newFile = new DropBoxFileViewModel()
+                {
+                    IsFile = dropBoxItem.IsFile,
+                    IsFolder = dropBoxItem.IsFolder,
+                    Name = dropBoxItem.Name
+                };
+
+                if (dropBoxItem.IsFolder)
+                {
+                    var newList = await _dbx.Files.ListFolderAsync(new ListFolderArg(dropBoxItem.PathLower));
+                    await GetDropBoxFiles(newFile, newList);
+                   
+                }
+                rootFile.DropBoxFiles.Add(newFile);
+
+            }
+
+            return rootFile;
+        }
 
     }
 }

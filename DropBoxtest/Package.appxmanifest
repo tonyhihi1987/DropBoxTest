@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="f9c712a7-6b44-40d2-8c0e-3862c324c86b"
-    Publisher="CN=T0NY"
+    Name="ad0ba6a1-9d31-4d14-a8e5-1d5f91d23296"
+    Publisher="CN=Celad-P033"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="f9c712a7-6b44-40d2-8c0e-3862c324c86b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="ad0ba6a1-9d31-4d14-a8e5-1d5f91d23296" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>DropBoxtest</DisplayName>
-    <PublisherDisplayName>T0NY</PublisherDisplayName>
+    <DisplayName>DropBoxTest</DisplayName>
+    <PublisherDisplayName>Celad-P033</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -30,12 +30,12 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="DropBoxtest.App">
+      EntryPoint="DropBoxTest.App">
       <uap:VisualElements
-        DisplayName="DropBoxtest"
+        DisplayName="DropBoxTest"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="DropBoxtest"
+        Description="DropBoxTest"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
