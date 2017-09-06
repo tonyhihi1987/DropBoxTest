@@ -12,7 +12,7 @@ The following must be installed:
 The easiest way to use these examples without using Git is to download the zip file containing the current version (using the following link or by clicking the "Download ZIP" button on the repo page).<br />
 You can then unzip the entire archive and use the examples in Visual Studio 2015 or higher.
 
-<a href = "/archive/master.zip">Download the examples ZIP</a>
+<a href = "https://github.com/MyScript/Interactive-ink-examples-Wpf/archive/master.zip">Download the examples ZIP</a>
 
 There are two wpf projects,
 
